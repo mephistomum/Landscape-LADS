@@ -33,7 +33,7 @@ function renderAlbums(filterArtist = "All") {
   Object.keys(albumData).forEach(albumName => {
     // Map albums to artist manually
     let albumArtist = "";
-    if (["Long-Awaited Reverly","Absurdity Unfolds","Midnight Stealth", "Magnum Opus", 
+    if (["Abyssal Mark","Abyssal Blossom","Long-Awaited Reverly","Absurdity Unfolds","Midnight Stealth", "Magnum Opus", 
       "Night of Secrecy", "Where Heart Lives", "Lovespeed Ride"].includes(albumName)) albumArtist = "Sylus";
     else if (["Diviner's Stillness","Diviner's Hymn" ].includes(albumName)) albumArtist = "Zayne";
     else albumArtist = "Other";
@@ -89,7 +89,7 @@ function renderSingleAlbum(albumName) {
     if (globalBackBtn) globalBackBtn.style.display = "block";
   });
 
-  
+
   const gallery = document.getElementById("gallery");
   const fragment = document.createDocumentFragment();
 
