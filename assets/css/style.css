@@ -1,0 +1,39 @@
+/* Apply only to the gallery wrapper */
+#galleryWrapper {
+  max-height: 80vh;
+  overflow-y: auto;
+
+  /* For Firefox */
+  scrollbar-width: thin;
+  scrollbar-color: rgba(100,100,100,0.6) transparent;
+
+  /* Force overlay scrollbars on Windows */
+  -ms-overflow-style: none; /* IE/Edge Legacy */
+  scrollbar-gutter: stable both-edges; 
+}
+
+/* Chrome, Edge, Safari */
+#galleryWrapper::-webkit-scrollbar {
+  width: 8px;
+}
+
+#galleryWrapper::-webkit-scrollbar-track {
+  background: transparent; /* no white background */
+}
+
+#galleryWrapper::-webkit-scrollbar-thumb {
+  background-color: rgba(100,100,100,0.6);
+  border-radius: 10px;
+  transition: background 0.3s ease;
+}
+
+/* Hide scrollbar until hover/scroll */
+#galleryWrapper::-webkit-scrollbar {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+#galleryWrapper:hover::-webkit-scrollbar,
+#galleryWrapper:active::-webkit-scrollbar {
+  opacity: 1;
+}
