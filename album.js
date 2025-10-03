@@ -21,9 +21,13 @@ function renderAlbums(filterArtist = "All") {
   if (!albumData) return;
 
   main.innerHTML = `
-    <div class="grid gap-6 grid-cols-2 sm:grid-cols-3 md:grid-cols-5 lg:grid-cols-7 auto-rows-[minmax(220px,auto)]"></div>
+
+    <div id="albumWrapper" class="max-h-[80vh] overflow-y-auto mt-[30px] px-4">
+      <div id="albumGrid" class="grid gap-6 grid-cols-2 sm:grid-cols-3 md:grid-cols-5 lg:grid-cols-7 auto-rows-[minmax(220px,auto)]"></div>
+    </div>
   `;
-  const grid = main.querySelector("div");
+
+  const grid = document.getElementById("albumGrid");
   const fragment = document.createDocumentFragment();
 
   Object.keys(albumData).forEach(albumName => {
@@ -54,6 +58,7 @@ function renderAlbums(filterArtist = "All") {
 
   grid.appendChild(fragment);
 }
+
 
 // Function to show single album view
 function renderSingleAlbum(albumName) {
