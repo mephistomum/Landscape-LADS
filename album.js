@@ -29,7 +29,7 @@ function renderAlbums(filterArtist = "All") {
   Object.keys(albumData).forEach(albumName => {
     // Map albums to artist manually
     let albumArtist = "";
-    if (["Midnight Stealth", "Magnum Opus", "Night of Secrecy", "Where Heart Lives", "Lovespeed Ride"].includes(albumName)) albumArtist = "Sylus";
+    if (["Long-Awaited Reverly","Absurdity Unfolds","Midnight Stealth", "Magnum Opus", "Night of Secrecy", "Where Heart Lives", "Lovespeed Ride"].includes(albumName)) albumArtist = "Sylus";
     else if (albumName === "Diviner's Stillness") albumArtist = "Zayne";
     else albumArtist = "Other";
 
