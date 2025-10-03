@@ -1,0 +1,16 @@
+npm uninstall tailwindcss
+npm install -D tailwindcss@3
+npx tailwindcss init -p
+
+
+npx tailwindcss -i ./assets/css/tailwind.css -o ./assets/css/output.css --watch
+
+
+
+input.css
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+tukar
+<link rel="stylesheet" href="assets/css/output.css">
