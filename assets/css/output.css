@@ -990,6 +990,24 @@ video {
   .max-lg\:bg-\[length\:auto_110vh\] {
     background-size: auto 110vh;
   }
+
+  .max-lg\:bg-\[length\:auto_115vh\] {
+    background-size: auto 115vh;
+  }
+
+  .max-lg\:bg-\[length\:auto_120vh\] {
+    background-size: auto 120vh;
+  }
+}
+
+@media not all and (min-width: 768px) {
+  .max-md\:bg-\[length\:auto_110vh\] {
+    background-size: auto 110vh;
+  }
+
+  .max-md\:bg-\[length\:auto_107vh\] {
+    background-size: auto 107vh;
+  }
 }
 
 @media (max-width: 415px) {
