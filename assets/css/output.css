@@ -664,6 +664,10 @@ video {
           user-select: none;
 }
 
+.resize {
+  resize: both;
+}
+
 .auto-rows-\[minmax\(220px\2c auto\)\] {
   grid-auto-rows: minmax(220px,auto);
 }
@@ -749,6 +753,10 @@ video {
 
 .bg-\[url\(\'\.\.\/img\/background\.png\'\)\] {
   background-image: url('../img/background.png');
+}
+
+.bg-\[url\(\'\.\.\/img\/background1\.png\'\)\] {
+  background-image: url('../img/background1.png');
 }
 
 .bg-center {

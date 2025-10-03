@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="assets/css/output.css">
 </head>
 <body class="min-h-screen flex flex-col items-center p-4 
-             bg-[url('../img/background.png')] 
+             bg-[url('../img/background1.png')] 
              lg:bg-[length:auto_115vh]  /* large screens and above */
              max-lg:bg-[length:auto_115vh] /* 1024px and below */
              max-md:bg-[length:auto_17vh] /* 1024px and below */
@@ -71,6 +71,13 @@
     <img id="lightboxImg" src="" alt="Enlarged Photo" class="max-w-[90vw] max-h-[90vh] rounded-lg shadow-lg">
   </div>
 </div>
+
+    <canvas
+  id="StarCanvas"
+  style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+         pointer-events: none; z-index: 0;"></canvas>
+
+         <script src="shiny.js"></script>
 
 <script src="album.js"></script>
 <script>
