@@ -20,36 +20,37 @@
 <!-- Navigation Bar -->
 <!-- Navigation Bar -->
 <nav class="w-full max-w-7xl mb-6 fixed">
-  <div class="flex max-[415px]:flex-col justify-center items-center gap-6 text-gray-800 font-serif select-none
-              max-[415px]:gap-2 max-[415px]:text-sm">
+  <div class="flex flex-wrap justify-center items-center gap-6 text-gray-800 font-serif select-none
+              md:gap-6 md:text-base">
 
     <!-- All Button -->
     <div class="flex justify-start">
       <button class="flex items-center gap-1 bg-gray-900 text-white font-semibold px-4 py-1 rounded-md shadow-md artist-btn
-                     max-[415px]:px-2 max-[415px]:py-0.5 max-[415px]:text-base">
-      <img src="assets/img/icon.png" alt="icon" class="w-5 h-5"> <!-- icon -->
+                     md:px-4 md:py-1 md:text-base">
+        <img src="assets/img/icon.png" alt="icon" class="w-5 h-5"> <!-- icon -->
         All
       </button>
     </div>
 
     <!-- Artist Buttons -->
-<ul class="flex max-[415px]:flex-col justify-center gap-4 max-[415px]:gap-2 lg:gap-1"> <!-- changed lg:gap-6 → lg:gap-1 -->
-  <div class="flex flex-col gap-1 md:flex-row md:gap-1 lg:flex-row lg:gap-1">
-    <button class="hover:text-pink-600 transition font-semibold rounded-md px-4 max-[415px]:px-2 max-[415px]:text-base artist-btn" data-artist="Sylus">Sylus</button>
-    <button class="hover:text-pink-600 transition font-semibold rounded-md px-4 max-[415px]:px-2 max-[415px]:text-base artist-btn" data-artist="Zayne">Zayne</button>
-  </div>
-  <div class="flex flex-col gap-1 md:flex-row md:gap-1 lg:flex-row lg:gap-1">
-    <button class="hover:text-pink-600 transition font-semibold rounded-md px-4 max-[415px]:px-2 max-[415px]:text-base artist-btn" data-artist="Rafayel">Rafayel</button>
-    <button class="hover:text-pink-600 transition font-semibold rounded-md px-4 max-[415px]:px-2 max-[415px]:text-base artist-btn" data-artist="Xavier">Xavier</button>
-  </div>
-  <div class="flex flex-col gap-1  md:flex-row md:gap-1 lg:flex-row lg:gap-1 ">
-    <button class="hover:text-pink-600 transition font-semibold rounded-md px-4 max-[415px]:px-2 max-[415px]:text-base artist-btn" data-artist="Caleb">Caleb</button>
-    <button class="hover:text-pink-600 transition font-semibold rounded-md px-4 max-[415px]:px-2 max-[415px]:text-base ">?</button>
-  </div>
-</ul>
+    <ul class="flex flex-wrap justify-center gap-4 md:gap-6">
+      <div class="flex flex-col gap-1 md:flex-row md:gap-1 lg:flex-row lg:gap-1">
+        <button class="hover:text-pink-600 transition font-semibold rounded-md px-4 md:px-4 artist-btn" data-artist="Sylus">Sylus</button>
+        <button class="hover:text-pink-600 transition font-semibold rounded-md px-4 md:px-4 artist-btn" data-artist="Zayne">Zayne</button>
+      </div>
+      <div class="flex flex-col gap-1 md:flex-row md:gap-1 lg:flex-row lg:gap-1">
+        <button class="hover:text-pink-600 transition font-semibold rounded-md px-4 md:px-4 artist-btn" data-artist="Rafayel">Rafayel</button>
+        <button class="hover:text-pink-600 transition font-semibold rounded-md px-4 md:px-4 artist-btn" data-artist="Xavier">Xavier</button>
+      </div>
+      <div class="flex flex-col gap-1 md:flex-row md:gap-1 lg:flex-row lg:gap-1">
+        <button class="hover:text-pink-600 transition font-semibold rounded-md px-4 md:px-4 artist-btn" data-artist="Caleb">Caleb</button>
+        <button class="hover:text-pink-600 transition font-semibold rounded-md px-4 md:px-4">?</button>
+      </div>
+    </ul>
 
   </div>
 </nav>
+
 
 
 
