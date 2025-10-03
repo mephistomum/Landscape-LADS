@@ -2,41 +2,62 @@ const params = new URLSearchParams(window.location.search);
 const album = params.get("album");
 const main = document.getElementById("content");
 
+// Global variable to store album data
+let albumData = null;
+
+// Fetch album.json once
+fetch("album.json")
+  .then(res => res.json())
+  .then(data => {
+    albumData = data;
+    // Initial rendering
+    if (album) renderSingleAlbum(album);
+    else renderAlbums();
+  })
+  .catch(err => console.error("Failed to load album.json:", err));
+
 // Function to render album cards
 function renderAlbums(filterArtist = "All") {
-  fetch("album.json")
-    .then(res => res.json())
-    .then(data => {
-      main.innerHTML = `
-        <div class="grid gap-6 grid-cols-2 sm:grid-cols-3 md:grid-cols-5 lg:grid-cols-7 auto-rows-[minmax(220px,auto)]"></div>
+  if (!albumData) return;
+
+  main.innerHTML = `
+    <div class="grid gap-6 grid-cols-2 sm:grid-cols-3 md:grid-cols-5 lg:grid-cols-7 auto-rows-[minmax(220px,auto)]"></div>
+  `;
+  const grid = main.querySelector("div");
+  const fragment = document.createDocumentFragment();
+
+  Object.keys(albumData).forEach(albumName => {
+    // Map albums to artist manually
+    let albumArtist = "";
+    if (["Midnight Stealth", "Magnum Opus", "Night of Secrecy", "Where Heart Lives", "Lovespeed Ride"].includes(albumName)) albumArtist = "Sylus";
+    else if (albumName === "Diviner's Stillness") albumArtist = "Zayne";
+    else albumArtist = "Other";
+
+    if (filterArtist === "All" || albumArtist === filterArtist) {
+      const article = document.createElement("article");
+      article.className = "relative select-none cursor-pointer";
+      article.innerHTML = `
+        <img src="assets/img/${albumName}/cover.png" 
+             class="w-full h-72 object-cover rounded-md shadow-lg hover:scale-105 transition" 
+             loading="lazy" />
+        <div class="mt-2 text-center text-gray-600 font-serif text-xs sm:text-sm font-medium">
+          ${albumArtist}: ${albumName}
+        </div>
       `;
-      const grid = main.querySelector("div");
-
-      Object.keys(data).forEach(albumName => {
-        // Map albums to artist manually if needed
-        let albumArtist = "";
-        if (albumName === "Magnum Opus" || albumName === "Night of Secrecy" || albumName === "Where Heart Lives") albumArtist = "Sylus";
-        else if (albumName === "Diviner's Stillness") albumArtist = "Zayne";
-        else albumArtist = "Other";
-
-        if (filterArtist === "All" || albumArtist === filterArtist) {
-          const article = document.createElement("article");
-          article.className = "relative select-none cursor-pointer";
-          article.innerHTML = `
-            <img src="assets/img/${albumName}/cover.png" class="w-full h-72 object-cover rounded-md shadow-lg hover:scale-105 transition" />
-            <div class="mt-2 text-center text-gray-600 font-serif text-xs sm:text-sm font-medium">${albumArtist}: ${albumName}</div>
-          `;
-          article.addEventListener("click", () => {
-            window.location.search = `?album=${encodeURIComponent(albumName)}`;
-          });
-          grid.appendChild(article);
-        }
+      article.addEventListener("click", () => {
+        window.location.search = `?album=${encodeURIComponent(albumName)}`;
       });
-    });
+      fragment.appendChild(article);
+    }
+  });
+
+  grid.appendChild(fragment);
 }
 
 // Function to show single album view
 function renderSingleAlbum(albumName) {
+  if (!albumData || !albumData[albumName]) return;
+
   main.innerHTML = `
     <div class="flex items-center gap-4 mb-4 fixed">
       <button id="backBtn" class="px-4 py-1 bg-gray-800 text-white rounded-md hover:bg-gray-700 transition">
@@ -54,26 +75,18 @@ function renderSingleAlbum(albumName) {
     window.location.href = window.location.pathname; // reload without ?album
   });
 
-  fetch("album.json")
-    .then(res => res.json())
-    .then(data => {
-      if (data[albumName]) {
-        const gallery = document.getElementById("gallery");
-        data[albumName].forEach(file => {
-          const img = document.createElement("img");
-          img.src = `assets/img/${albumName}/${file}`;
-          img.className = "w-full h-auto rounded-md shadow hover:scale-105 transition";
-          gallery.appendChild(img);
-        });
-      }
-    });
-}
+  const gallery = document.getElementById("gallery");
+  const fragment = document.createDocumentFragment();
 
-// Initial rendering
-if (album) {
-  renderSingleAlbum(album);
-} else {
-  renderAlbums();
+  albumData[albumName].forEach(file => {
+    const img = document.createElement("img");
+    img.src = `assets/img/${albumName}/${file}`;
+    img.loading = "lazy"; // lazy-load images
+    img.className = "w-full h-auto rounded-md shadow hover:scale-105 transition";
+    fragment.appendChild(img);
+  });
+
+  gallery.appendChild(fragment);
 }
 
 // Navbar button filtering
