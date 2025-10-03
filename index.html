@@ -97,17 +97,19 @@
   });
 
     // Fetch album photos
-    fetch(`get_album.php?album=${album}`)
-      .then(res => res.json())
-      .then(files => {
-        const gallery = document.getElementById("gallery");
-        files.forEach(file => {
-          const img = document.createElement("img");
-          img.src = `assets/img/${album}/${file}`;
-          img.className = "w-full h-auto rounded-md shadow hover:scale-105 transition";
-          gallery.appendChild(img);
-        });
+ fetch("album.json")
+  .then(res => res.json())
+  .then(data => {
+    if (data[album]) {
+      const gallery = document.getElementById("gallery");
+      data[album].forEach(file => {
+        const img = document.createElement("img");
+        img.src = `assets/img/${album}/${file}`;
+        img.className = "w-full h-auto rounded-md shadow hover:scale-105 transition";
+        gallery.appendChild(img);
       });
+    }
+  });
   } else {
     // Show default cards (your current code)
     main.innerHTML = `
