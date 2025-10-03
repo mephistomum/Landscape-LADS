@@ -62,6 +62,11 @@ function renderAlbums(filterArtist = "All") {
 
 // Function to show single album view
 function renderSingleAlbum(albumName) {
+
+    // Hide global back button
+  const globalBackBtn = document.getElementById("globalBackBtn");
+  if (globalBackBtn) globalBackBtn.style.display = "none";
+  
   if (!albumData || !albumData[albumName]) return;
 
   main.innerHTML = `
@@ -77,10 +82,14 @@ function renderSingleAlbum(albumName) {
     </div>
   `;
 
+
   document.getElementById("backBtn").addEventListener("click", () => {
     window.location.href = window.location.pathname; // reload without ?album
+    // Show the global back button again
+    if (globalBackBtn) globalBackBtn.style.display = "block";
   });
 
+  
   const gallery = document.getElementById("gallery");
   const fragment = document.createDocumentFragment();
 
