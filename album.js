@@ -22,8 +22,8 @@ function renderAlbums(filterArtist = "All") {
 
   main.innerHTML = `
 
-    <div id="albumWrapper" class="max-h-[80vh] overflow-y-auto mt-[30px] px-4">
-      <div id="albumGrid" class="grid gap-6 grid-cols-2 sm:grid-cols-3 md:grid-cols-5 lg:grid-cols-7 auto-rows-[minmax(220px,auto)]"></div>
+    <div id="albumWrapper" class="max-h-[80vh] overflow-y-auto mt-[20px] px-4">
+      <div id="albumGrid" class="grid gap-6 grid-cols-2 mt-[10px] sm:grid-cols-3 md:grid-cols-5 lg:grid-cols-7 auto-rows-[minmax(220px,auto)] "></div>
     </div>
   `;
 
@@ -70,7 +70,7 @@ function renderSingleAlbum(albumName) {
   if (!albumData || !albumData[albumName]) return;
 
   main.innerHTML = `
-    <div class="flex items-center gap-4 mb-4 fixed">
+    <div class="flex items-center gap-4 mb-4 fixed ">
       <button id="backBtn" class="px-4 py-1 bg-gray-800 text-white rounded-md hover:bg-gray-700 transition">
         ← Back
       </button>
@@ -78,7 +78,7 @@ function renderSingleAlbum(albumName) {
     </div>
 
     <div id="galleryWrapper" class="max-h-[80vh] overflow-y-auto mt-[55px]">
-      <div id="gallery" class="grid gap-4 grid-cols-2 sm:grid-cols-3 md:grid-cols-5"></div>
+      <div id="gallery" class="grid gap-4 grid-cols-2 mt-[10px] sm:grid-cols-3 md:grid-cols-5"></div>
     </div>
   `;
 
