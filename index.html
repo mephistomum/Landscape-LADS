@@ -68,14 +68,27 @@
 
 <!-- Modal -->
 <div id="lightbox" class="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center hidden z-50">
-  <div class="relative">
+  <div class="relative flex items-center">
+    <!-- Prev Button -->
+    <button id="prevLightbox" 
+      class="absolute left-2 top-1/2 -translate-y-1/2 bg-gray-800 bg-opacity-70 text-white px-3 py-2 rounded-full hover:bg-opacity-90">
+      ‹
+    </button>
+
+    <!-- Enlarged Image -->
+    <img id="lightboxImg" src="" alt="Enlarged Photo" class="max-w-[90vw] max-h-[90vh] rounded-lg shadow-lg">
+
+    <!-- Next Button -->
+    <button id="nextLightbox" 
+      class="absolute right-2 top-1/2 -translate-y-1/2 bg-gray-800 bg-opacity-70 text-white px-3 py-2 rounded-full hover:bg-opacity-90">
+      ›
+    </button>
+
     <!-- Close button with text -->
     <button id="closeLightbox" class="absolute top-2 right-2 flex items-center gap-2 text-white text-lg font-semibold bg-gray-800 bg-opacity-70 px-3 py-1 rounded-md hover:bg-opacity-90 transition">
       <span class="text-2xl relative -top-0.5">&times;</span>
       <span class="text-base">Close</span>
     </button>
-    <!-- Enlarged Image -->
-    <img id="lightboxImg" src="" alt="Enlarged Photo" class="max-w-[90vw] max-h-[90vh] rounded-lg shadow-lg">
   </div>
 </div>
 
@@ -91,13 +104,38 @@
   const lightbox = document.getElementById("lightbox");
   const lightboxImg = document.getElementById("lightboxImg");
   const closeLightbox = document.getElementById("closeLightbox");
+  const prevBtn = document.getElementById("prevLightbox");
+  const nextBtn = document.getElementById("nextLightbox");
+
+  let galleryImages = [];
+  let currentIndex = 0;
 
   // Open modal on image click
   document.addEventListener("click", (e) => {
     if (e.target.tagName === "IMG" && e.target.closest("#gallery")) {
-      lightboxImg.src = e.target.src;
+      galleryImages = [...document.querySelectorAll("#gallery img")];
+      currentIndex = galleryImages.indexOf(e.target);
+
+      showImage(currentIndex);
       lightbox.classList.remove("hidden");
     }
+  });
+
+  function showImage(index) {
+    if (galleryImages.length > 0) {
+      lightboxImg.src = galleryImages[index].src;
+    }
+  }
+
+  // Prev / Next buttons
+  prevBtn.addEventListener("click", () => {
+    currentIndex = (currentIndex - 1 + galleryImages.length) % galleryImages.length;
+    showImage(currentIndex);
+  });
+
+  nextBtn.addEventListener("click", () => {
+    currentIndex = (currentIndex + 1) % galleryImages.length;
+    showImage(currentIndex);
   });
 
   // Close modal
@@ -105,17 +143,25 @@
     lightbox.classList.add("hidden");
   });
 
-  // Close when clicking outside the image
+  // Close when clicking outside image
   lightbox.addEventListener("click", (e) => {
     if (e.target === lightbox) {
       lightbox.classList.add("hidden");
     }
   });
 
-  // Close with ESC key
+  // Keyboard navigation
   document.addEventListener("keydown", (e) => {
+    if (lightbox.classList.contains("hidden")) return;
+
     if (e.key === "Escape") {
       lightbox.classList.add("hidden");
+    } else if (e.key === "ArrowLeft") {
+      currentIndex = (currentIndex - 1 + galleryImages.length) % galleryImages.length;
+      showImage(currentIndex);
+    } else if (e.key === "ArrowRight") {
+      currentIndex = (currentIndex + 1) % galleryImages.length;
+      showImage(currentIndex);
     }
   });
 </script>
