@@ -37,6 +37,7 @@ function renderAlbums(filterArtist = "All") {
       "Night of Secrecy", "Where Heart Lives", "Lovespeed Ride"].includes(albumName)) albumArtist = "Sylus";
     else if (["Diviner's Stillness","Diviner's Hymn" ].includes(albumName)) albumArtist = "Zayne";
     else if (["Intertidal Zone" ].includes(albumName)) albumArtist = "Rafayel";
+    else if (["No-Return Night" ].includes(albumName)) albumArtist = "Caleb";
     else albumArtist = "Other";
 
     if (filterArtist === "All" || albumArtist === filterArtist) {
