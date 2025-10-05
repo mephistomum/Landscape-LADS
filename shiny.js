@@ -31,20 +31,30 @@ class Star {
     this.twinkleSpeed = 0.002 + Math.random() * 0.003; // slower fading
   }
 
-  update() {
-    this.x += this.speedX;
-    this.y += this.speedY;
+update() {
+  this.x += this.speedX;
+  this.y += this.speedY;
 
-    // bounce vertically within a small range around baseY
-    if (this.y < this.baseY - 10 || this.y > this.baseY + 10) {
-      this.speedY *= -1;
-    }
-
-    // fading in/out
-    this.opacity += this.twinkleSpeed * this.opacityDirection;
-    if (this.opacity >= 1) this.opacityDirection = -1;
-    if (this.opacity <= 0.1) this.opacityDirection = 1;
+  // bounce vertically within a small range around baseY
+  if (this.y < this.baseY - 10 || this.y > this.baseY + 10) {
+    this.speedY *= -1;
   }
+
+  // fading in/out
+  this.opacity += this.twinkleSpeed * this.opacityDirection;
+
+  // When fully visible, start fading out
+  if (this.opacity >= 1) {
+    this.opacityDirection = -1;
+  }
+
+  // When completely invisible, reset position & start fading in again
+  if (this.opacity <= 0) {
+    this.reset();
+    this.opacity = 0;              // restart invisible
+    this.opacityDirection = 1;     // fade in again
+  }
+}
 
   draw() {
     ctx.save();

@@ -36,7 +36,7 @@ function renderAlbums(filterArtist = "All") {
     if (["Radiant Brilliance","Goodcat Code","Valleydream Bloom","Passionate Appraisal","Innocent Birdcage","Alternative Darkborne","Abyssal Mark","Abyssal Blossom","Long-Awaited Reverly","Absurdity Unfolds","Midnight Stealth", "Magnum Opus", 
       "Night of Secrecy", "Where Heart Lives", "Lovespeed Ride"].includes(albumName)) albumArtist = "Sylus";
     else if (["Diviner's Stillness","Diviner's Hymn" ].includes(albumName)) albumArtist = "Zayne";
-    else if (["Intertidal Zone" ].includes(albumName)) albumArtist = "Rafayel";
+    else if (["Mistsea Lament","Intertidal Zone" ].includes(albumName)) albumArtist = "Rafayel";
     else if (["No-Return Night" ].includes(albumName)) albumArtist = "Caleb";
     else albumArtist = "Other";
 
