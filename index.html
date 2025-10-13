@@ -97,74 +97,11 @@
   style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
          pointer-events: none; z-index: 0;"></canvas>
 
-         <script src="shiny.js"></script>
+         <script src="shiny-obf.js"></script>
 
-<script src="album.js"></script>
-<script>
-  const lightbox = document.getElementById("lightbox");
-  const lightboxImg = document.getElementById("lightboxImg");
-  const closeLightbox = document.getElementById("closeLightbox");
-  const prevBtn = document.getElementById("prevLightbox");
-  const nextBtn = document.getElementById("nextLightbox");
+<script src="album-obf.js"></script>
+<script src="modal-obf.js"></script>
 
-  let galleryImages = [];
-  let currentIndex = 0;
-
-  // Open modal on image click
-  document.addEventListener("click", (e) => {
-    if (e.target.tagName === "IMG" && e.target.closest("#gallery")) {
-      galleryImages = [...document.querySelectorAll("#gallery img")];
-      currentIndex = galleryImages.indexOf(e.target);
-
-      showImage(currentIndex);
-      lightbox.classList.remove("hidden");
-    }
-  });
-
-  function showImage(index) {
-    if (galleryImages.length > 0) {
-      lightboxImg.src = galleryImages[index].src;
-    }
-  }
-
-  // Prev / Next buttons
-  prevBtn.addEventListener("click", () => {
-    currentIndex = (currentIndex - 1 + galleryImages.length) % galleryImages.length;
-    showImage(currentIndex);
-  });
-
-  nextBtn.addEventListener("click", () => {
-    currentIndex = (currentIndex + 1) % galleryImages.length;
-    showImage(currentIndex);
-  });
-
-  // Close modal
-  closeLightbox.addEventListener("click", () => {
-    lightbox.classList.add("hidden");
-  });
-
-  // Close when clicking outside image
-  lightbox.addEventListener("click", (e) => {
-    if (e.target === lightbox) {
-      lightbox.classList.add("hidden");
-    }
-  });
-
-  // Keyboard navigation
-  document.addEventListener("keydown", (e) => {
-    if (lightbox.classList.contains("hidden")) return;
-
-    if (e.key === "Escape") {
-      lightbox.classList.add("hidden");
-    } else if (e.key === "ArrowLeft") {
-      currentIndex = (currentIndex - 1 + galleryImages.length) % galleryImages.length;
-      showImage(currentIndex);
-    } else if (e.key === "ArrowRight") {
-      currentIndex = (currentIndex + 1) % galleryImages.length;
-      showImage(currentIndex);
-    }
-  });
-</script>
 
 </body>
 </html>
